@@ -49,7 +49,7 @@ nmap <your_key_combo> <Plug>SetTmuxVars
 Have a command you run frequently, use this:
 
 ``` vim
-nmap <your_key_combo> :Tmux <your_command><CR>
+nmap <your_key_combo> :Tx <your_command><CR>
 ```
 
 Reset your tmux session, windows and panel mapping

@@ -107,4 +107,4 @@ nmap <unique> <Plug>NormalModeSendToTmux vip <Plug>SendSelectionToTmux
 
 nmap <unique> <Plug>SetTmuxVars :call <SID>Tmux_Vars()<CR>
 
-command! -nargs=* Tmux call Send_to_Tmux('<Args><CR>')
+command! -nargs=* Tx call Send_to_Tmux('<Args><CR>')
