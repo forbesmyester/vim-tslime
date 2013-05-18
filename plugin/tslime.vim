@@ -97,6 +97,11 @@ function! s:Tmux_Vars()
   endif
 endfunction
 
+function! ResetTmuxVars()
+  call <SID>Tmux_Vars()
+endfunction
+command ResetTmuxVars call ResetTmuxVars()
+
 vmap <unique> <Plug>SendSelectionToTmux "ry :call Send_to_Tmux(@r)<CR>
 nmap <unique> <Plug>NormalModeSendToTmux vip <Plug>SendSelectionToTmux
 
