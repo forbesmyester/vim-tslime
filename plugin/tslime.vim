@@ -64,37 +64,31 @@ endfunction
 " set tslime.vim variables
 function! s:Tmux_Vars()
   let names = split(s:TmuxSessions(), "\n")
+  let defsession = ''
   let g:tslime = {}
   if len(names) == 1
     let g:tslime['session'] = names[0]
-  else
-    let g:tslime['session'] = ''
+    let defsession = names[0]
   endif
-  while g:tslime['session'] == ''
-    let g:tslime['session'] = input("session name: ", "", "custom,Tmux_Session_Names")
-  endwhile
+
+  let g:tslime['session'] = input("session name: ", defsession, "custom,Tmux_Session_Names")
 
   let windows = split(s:TmuxWindows(), "\n")
+  let defwindow = ''
   if len(windows) == 1
-    let window = windows[0]
-  else
-    let window = input("window name: ", "", "custom,Tmux_Window_Names")
-    if window == ''
-      let window = windows[0]
-    endif
+    let defwindow = windows[0]
   endif
 
+  let window = input("window name: ", defwindow, "custom,Tmux_Window_Names")
   let g:tslime['window'] =  substitute(window, ":.*$" , '', 'g')
 
   let panes = split(s:TmuxPanes(), "\n")
+  let defpane = ''
   if len(panes) == 1
-    let g:tslime['pane'] = panes[0]
-  else
-    let g:tslime['pane'] = input("pane number: ", "", "custom,Tmux_Pane_Numbers")
-    if g:tslime['pane'] == ''
-      let g:tslime['pane'] = panes[0]
-    endif
+    let defpane = panes[0]
   endif
+
+  let g:tslime['pane'] = input("pane number: ", defpane, "custom,Tmux_Pane_Numbers")
 endfunction
 
 function! ResetTmuxVars()
