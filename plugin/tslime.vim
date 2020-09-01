@@ -21,6 +21,17 @@ function! Send_to_Tmux(text)
   call <SID>set_tmux_buffer(oldbuffer)
 endfunction
 
+function! Send_Keys_to_Tmux(text)
+  if !exists("g:tslime")
+    call <SID>Tmux_Vars()
+  end
+
+  let oldbuffer = system(shellescape("tmux show-buffer"))
+  call <SID>set_tmux_buffer(a:text)
+  call system("tmux send-keys -t " . s:tmux_target() . " '" . substitute(a:text, "'", "'\\\\''", 'g') . "'")
+  call <SID>set_tmux_buffer(oldbuffer)
+endfunction
+
 function! s:tmux_target()
   return '"' . g:tslime['session'] . '":' . g:tslime['window'] . "." . g:tslime['pane']
 endfunction
